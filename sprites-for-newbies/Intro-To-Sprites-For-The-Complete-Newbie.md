@@ -38,7 +38,24 @@ Let's break down $F4000 to see what it's all about:
 
 The "$" tells you that the number is a hex. If you have a programmer's calculator on your computer, you can easily find out that $F4000 is the same as 999,424. You might agree that $F4000 is easier to remember than 999,424.
 
+Oh, programmers also like to start counting from 0 instead of 1, so it's why you have "Digit 0", instead of "Digit 1"
+
 <img src="./assets/calc.png" width="50%">
+
+If you're curious about how to do this manually, starting from digit-0 going to digit-4, you can use the formula:
+
+0 * (16^0) + 0 * (16^1) + 0 * (16^2) + 4 * (16^3) + 15 * (16^4)
+
+=
+
+0 + 0 + 0 + 4 * 4096 + 15 * 65536
+
+=
+
+999,424
+
+
+So memory locations $F4000 (or 999,424) to $F400F (or 999,439) contain some controls for the sprites system.
 
 ### Sprite Registers ###
 <table>
