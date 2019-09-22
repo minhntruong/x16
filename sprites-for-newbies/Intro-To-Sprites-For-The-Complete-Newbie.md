@@ -36,7 +36,7 @@ Let's break down $F4000 to see what it's all about:
 |:-----:|:-----:|:-----:|:-----:|:-----:|:-----:|
 |$      |F      |4      |0      |0      |0      |
 
-The "$" tells you that the number is a hex. If you have a programmer's calculator on your computer, you can easily find out that $F4000 is the same as 999,424. You might agree that $F4000 is easier to remember than 999,424.
+The "$" tells you that the number is a hex. If you have a programmer's calculator on your computer, you can easily find out that $F4000 is the same as 999424. You might agree that $F4000 is easier to remember than 999424.
 
 Oh, programmers also like to start counting from 0 instead of 1, so it's why you have "Digit 0", instead of "Digit 1"
 
@@ -52,12 +52,12 @@ If you're curious about how to do this manually, starting from digit-0 going to 
 
 =
 
-999,424
+999424
 
 
-So memory locations $F4000 (or 999,424) to $F400F (or 999,439) contain some controls for the sprites system.
+So memory locations $F4000 (or 999424) to $F400F (or 999439) contain some controls for the sprites system.
 
-### Sprite Registers ###
+### Sprite Registers ($F4000) ###
 <table>
     <thead>
         <tr>
@@ -98,4 +98,73 @@ So memory locations $F4000 (or 999,424) to $F400F (or 999,439) contain some cont
     </tbody>
 </table>
 
-## How to store numbers in bits & bytes ##
+So the first location (Register 0) starting at location $F4000 is called SPR_CTRL, which stands for "Sprite Control." Let's ignore SPR_COLLISION for now. SPR_CTRL has 7 bits within it. With Bit 0 being the Enable (EN) bit. When EN = 1, then the sprites system is turned on. When EN = 0, then it's off.
+
+## Sounds easy! Let's turn on the sprites ##
+
+In Commodore BASIC, if you want to put a value into a memory location, you'd use the `POKE` command, as in:
+
+```
+POKE 1024, 255
+```
+
+This puts the value 255 -- the maximum you can use -- into location 1024. Why is 255 the maximum value?
+
+Each memory location is backed by a "byte" -- which has 8 "bits" in it. You'll recognize now that there are also 8 bits in SPR_CTRL / $F4000.
+Each bit can have a value of either 0 or 1 only. This is the binary system, so let me list all the possible values a byte can have:
+
+|Binary   | Decimal |
+|--------:|--------:|
+|00000000 | 0       |
+|00000001 | 1       |
+|00000010 | 2       |
+|00000011 | 3       |
+|00000100 | 4       |
+|00000101 | 5       |
+|00000110 | 6       |
+|00000111 | 7       |
+|00001000 | 8       |
+|00001001 | 9       |
+|00001010 | 10      |
+
+Just kidding, I'm not goint to list out all 256 values a byte can have, but if you need to do the conversion, whip out your programmer's calculator, or use this formula:
+
+<span>Digit<sub>7</sub> * 2^7 + Digit<sub>6</sub> * 2^6 + Digit<sub>5</sub> * 2^5 + Digit<sub>4</sub> * 2^4 + Digit<sub>3</sub> * 2^3 + Digit<sub>2</sub> * 2^2 + Digit<sub>1</sub> * 2^1 + Digit<sub>0</sub> * 2^0</span>
+
+So, going back to the table for SPR_CTRL
+|Name|Digit 7|Digit 6|Digit 5|Digit 4|Digit 3|Digit 2|Digit 1|Digit 0|
+|----|-------|-------|-------|-------|-------|-------|-------|:-----:|
+|    |       |       |       |       |       |       |       |EN     |
+
+Based on this, we need to store value
+
+```00000001```
+
+into location
+
+`$F4000` or `999424`
+
+### So, POKE $F4000, 1? ##
+
+Not quite! $F4000 is the VERA adapter's memory and is separate from the Commander 16's main memory. `POKE` is used to access main memory, not video memory. Luckily, the team has given us a new command:
+
+`VPOKE`
+
+### So, VPOKE $F4000, 1? ###
+
+Almost! but still no! Because the C64 was an 8-bit machine, and its CPU can only access memory locations 0 - 65535 ($0 - $FFFF), the original `POKE` wasn't designed to go beyond 65535, and so the new command `VPOKE` is keeping with the old tradition. Instead, `VPOKE` makes you split the memory address into 2 parts: 
+
+* The right-most 4 hex digits
+* Whatever's leftover on the left side
+
+So, we'd have to use:
+
+`VPOKE $F, $4000, 1`
+
+Note the new BASIC takes hexadecimal numbers, but you can use normal decimal numbers as well:
+
+`VPOKE 15, 16384, 1`
+
+But you have to agree that the hex numbers are way easier to remember.
+
+
