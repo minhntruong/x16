@@ -19,16 +19,16 @@ Here's a sprite of a balloon floating across the X16 screen.
 
 ## Awesome! Let's do some sprites! ##
 
-If you look at the [VERA Programmer's Reference](https://github.com/commanderx16/x16-docs/blob/master/VERA%20Programmer's%20Reference.md), under the  [Internal Address Space](https://github.com/commanderx16/x16-docs/blob/master/VERA%20Programmer's%20Reference.md#internal-address-space) section, you might notice that these address ranges have something to do with sprites:
+If you look at the [VERA Programmer's Reference](https://github.com/commanderx16/x16-docs/blob/master/VERA%20Programmer's%20Reference.md), under the  [Internal Address Space](https://github.com/commanderx16/x16-docs/blob/master/VERA%20Programmer's%20Reference.md#internal-address-space) section, you'll notice that these address ranges have something to do with sprites:
 
 | Address Range   | Description       |
 |-----------------|-------------------|
 | $F4000 - $F400F | Sprite Registers  |
 | $F5000 - $F53FF | Sprite Attributes |
 
-### Dollar-F-4-thousand? ###
+### F-4-thousand Dollars? ###
 
-Close! It's actually pronounced Hex-F-4-thousand. Hexadecimal is another way to write the numbers you've known all these years. Instead of counting with 10 digits, hexadecimal counts with 16 digits. So, it's 0-1-2-3-4-5-6-7-8-9-A-B-C-D-E-F. It's a bit closer to how computers store data, so programmers like this system.
+It's actually pronounced Hex-F-4-thousand. Hexadecimal is another way to write the numbers you've known all these years. Instead of counting with 10 digits, hexadecimal counts with 16 digits. So, it's 0-1-2-3-4-5-6-7-8-9-A-B-C-D-E-F. It's a bit closer to how computers store data, so programmers like this system.
 
 Let's break down $F4000 to see what it's all about:
 
@@ -36,9 +36,9 @@ Let's break down $F4000 to see what it's all about:
 |:-----:|:-----:|:-----:|:-----:|:-----:|:-----:|
 |$      |F      |4      |0      |0      |0      |
 
-The "$" tells you that the number is a hex. If you have a programmer's calculator on your computer, you can easily find out that $F4000 is the same as 999424. You might agree that $F4000 is easier to remember than 999424.
+The "$" tells you that the number is a hex number -- or base 16. If you have a programmer's calculator on your computer, you can easily find out that $F4000 is the same as 999424. You'll agree that $F4000 is easier to say than 999424.
 
-Oh, programmers also like to start counting from 0 instead of 1, so it's why you have "Digit 0", instead of "Digit 1"
+Oh, programmers also like to start counting from 0 instead of 1, so it's why you have "Digit 0", instead of "Digit 1". Counting from digit-0 to digit-4, gives you 5 digits.
 
 <img src="./assets/calc.png" width="50%">
 
@@ -98,7 +98,7 @@ So memory locations $F4000 (or 999424) to $F400F (or 999439) contain some contro
     </tbody>
 </table>
 
-So the first location (Register 0) starting at location $F4000 is called SPR_CTRL, which stands for "Sprite Control." Let's ignore SPR_COLLISION for now. SPR_CTRL has 7 bits within it. With Bit 0 being the Enable (EN) bit. When EN = 1, then the sprites system is turned on. When EN = 0, then it's off.
+So the first location (Register 0) starting at location $F4000 is called SPR_CTRL, which stands for "Sprite Control." Let's ignore SPR_COLLISION for now. SPR_CTRL has 8 bits within it. With Bit 0 being the Enable (EN) bit. When EN = 1, then the sprites system is turned on. When EN = 0, then it's off.
 
 ## Sounds easy! Let's turn on the sprites ##
 
@@ -167,4 +167,4 @@ Note the new BASIC takes hexadecimal numbers, but you can use normal decimal num
 
 But you have to agree that the hex numbers are way easier to remember.
 
-
+### I Just `VPOKE $F, $4000, 1` and Nothing Happened ###
