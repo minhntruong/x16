@@ -10,10 +10,31 @@ The Commander 16 project is still being worked on, and it's the same thing for V
 To follow along with this article, you'll need to run the Commander 16 Emulator. For instructions how, see here.
 
 ## What is a sprite? ##
+
+A sprite is a piece of graphic that you can move anywhere on the screen, and it can be placed in front of, or behind other graphics, such as a screen of text, or some other backgrounds.
+
+Here's a sprite of a balloon floating across the X16 screen.
+
 ![Sprite demo](./assets/baloon.gif)
 
-## How to store numbers in bits & bytes ##
+## Awesome! Let's do some sprites! ##
 
+If you look at the [VERA Programmer's Reference](https://github.com/commanderx16/x16-docs/blob/master/VERA%20Programmer's%20Reference.md), under the  [Internal Address Space](https://github.com/commanderx16/x16-docs/blob/master/VERA%20Programmer's%20Reference.md#internal-address-space) section, you might notice that these address ranges have something to do with sprites:
+
+| Address Range   | Description       |
+|-----------------|-------------------|
+| $F4000 - $F400F | Sprite Registers  |
+| $F5000 - $F53FF | Sprite Attributes |
+
+### Dollar-F-4-thousand? ###
+
+Close! It's actually pronounced Hex-F-4-thousand. Hexadecimal is another way to write the numbers you've known all these years. Instead of counting with 10 digits, hexadecimal counts with 16 digits. It's a bit closer to how computers store data, so programmers like this system.
+
+|Digit 4|Digit 3|Digit 2|Digit 1|Digit 0|
+|:-----:|:-----:|:-----:|:-----:|:-----:|
+|F      |4      |0      |0      |0      |
+
+### Sprite Registers ###
 <table>
     <thead>
         <tr>
@@ -53,3 +74,5 @@ To follow along with this article, you'll need to run the Commander 16 Emulator.
         </tr>
     </tbody>
 </table>
+
+## How to store numbers in bits & bytes ##
