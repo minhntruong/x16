@@ -40,7 +40,7 @@ You might've heard of the Commander 16 Project where a bunch of people are tryin
             <td></td>
             <td></td>
             <td></td>
-            <td colspan="4">Collision Mask</td>
+            <td colspan="4" align="center">Collision Mask</td>
         </tr>
     </tbody>
 </table>
