@@ -28,11 +28,17 @@ If you look at the [VERA Programmer's Reference](https://github.com/commanderx16
 
 ### Dollar-F-4-thousand? ###
 
-Close! It's actually pronounced Hex-F-4-thousand. Hexadecimal is another way to write the numbers you've known all these years. Instead of counting with 10 digits, hexadecimal counts with 16 digits. It's a bit closer to how computers store data, so programmers like this system.
+Close! It's actually pronounced Hex-F-4-thousand. Hexadecimal is another way to write the numbers you've known all these years. Instead of counting with 10 digits, hexadecimal counts with 16 digits. So, it's 0-1-2-3-4-5-6-7-8-9-A-B-C-D-E-F. It's a bit closer to how computers store data, so programmers like this system.
 
-|Digit 4|Digit 3|Digit 2|Digit 1|Digit 0|
-|:-----:|:-----:|:-----:|:-----:|:-----:|
-|F      |4      |0      |0      |0      |
+Let's break down $F4000 to see what it's all about:
+
+|Base   |Digit 4|Digit 3|Digit 2|Digit 1|Digit 0|
+|:-----:|:-----:|:-----:|:-----:|:-----:|:-----:|
+|$      |F      |4      |0      |0      |0      |
+
+The "$" tells you that the number is a hex. If you have a programmer's calculator on your computer, you can easily find out that $F4000 is the same as 999,424. You might agree that $F4000 is easier to remember than 999,424.
+
+<img src="./assets/calc.png" width="50%">
 
 ### Sprite Registers ###
 <table>
