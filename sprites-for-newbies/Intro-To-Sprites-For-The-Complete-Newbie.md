@@ -5,7 +5,42 @@ You might've heard of the Commander 16 Project where a bunch of people are tryin
 
 ## How to store numbers in bits & bytes ##
 
-|Register|Name         |Bit 7|Bit 6|Bit 5|Bit 4|Bit 3|Bit 2|Bit 1|Bit 0|
-|--------|-------------|-----|-----|-----|-----|-----|-----|-----|-----|
-|0       |SPR_CTRL     |     |     |     |     |     |     |     |     |
-|1       |SPR_COLLISION|     |     |     |     |     |     |     |     |
+<table>
+    <thead>
+        <tr>
+            <th>Register</th>
+            <th>Name</th>
+            <th>Bit 7</th>
+            <th>Bit 6</th>
+            <th>Bit 5</th>
+            <th>Bit 4</th>
+            <th>Bit 3</th>
+            <th>Bit 2</th>
+            <th>Bit 1</th>
+            <th>Bit 0</th>
+        </tr>
+    </thead>
+    <tbod>
+        <tr>
+            <td>0</td>
+            <td>SPR_CTRL</td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td>EN</td>
+        </tr>
+        <tr>
+            <td>1</td>
+            <td>SPR_COLLISION</td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td colspan="4">Collision Mask</td>
+        </tr>
+    </tbody>
+</table>
