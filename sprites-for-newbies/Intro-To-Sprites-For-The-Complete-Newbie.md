@@ -15,7 +15,7 @@ A sprite is a piece of graphic that you can move anywhere on the screen, and it 
 
 Here's a sprite of a balloon floating across the X16 screen.
 
-![Sprite demo](./assets/baloon.gif)
+<img src="./assets/baloon.gif" width="50%">
 
 ## Awesome! Let's do some sprites! ##
 
