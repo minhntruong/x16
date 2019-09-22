@@ -10,7 +10,7 @@ The Commander 16 project is still being worked on, and it's the same thing for V
 To follow along with this article, you'll need to run the Commander 16 Emulator. For instructions how, see here.
 
 ## What is a sprite? ##
-![Sprite demo](/assets/baloon.gif)
+![Sprite demo](./assets/baloon.gif)
 
 ## How to store numbers in bits & bytes ##
 
