@@ -132,6 +132,7 @@ Just kidding, I'm not goint to list out all 256 values a byte can have, but if y
 <span>Digit<sub>7</sub> * 2^7 + Digit<sub>6</sub> * 2^6 + Digit<sub>5</sub> * 2^5 + Digit<sub>4</sub> * 2^4 + Digit<sub>3</sub> * 2^3 + Digit<sub>2</sub> * 2^2 + Digit<sub>1</sub> * 2^1 + Digit<sub>0</sub> * 2^0</span>
 
 So, going back to the table for SPR_CTRL
+
 |Name|Digit 7|Digit 6|Digit 5|Digit 4|Digit 3|Digit 2|Digit 1|Digit 0|
 |----|-------|-------|-------|-------|-------|-------|-------|:-----:|
 |    |       |       |       |       |       |       |       |EN     |
