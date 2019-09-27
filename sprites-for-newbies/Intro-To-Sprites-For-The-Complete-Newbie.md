@@ -168,3 +168,5 @@ Note the new BASIC takes hexadecimal numbers, but you can use normal decimal num
 But you have to agree that the hex numbers are way easier to remember.
 
 ### I Just `VPOKE $F, $4000, 1` and Nothing Happened ###
+
+<img src="./assets/addresses.png" width="100%">
