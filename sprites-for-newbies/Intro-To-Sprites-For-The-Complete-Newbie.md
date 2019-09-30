@@ -36,6 +36,8 @@ Before we look into how hexadecimals work, let's look at the good 'ole decimal s
 
 Then counting in hexadecimal is the same. You go through all the possible digits (0-F) before you increase by 1 to the digit to the left.
 
+<img src="./assets/counter-dec-hex.gif" width="25%">
+
 
 Let's break down $F4000 to see what it's all about:
 
