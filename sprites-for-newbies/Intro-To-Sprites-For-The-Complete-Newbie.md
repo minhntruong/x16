@@ -32,7 +32,7 @@ It's actually pronounced Hex-F-4-thousand. Hexadecimal is another way to write t
 
 Before we look into how hexadecimals work, let's look at the good 'ole decimal system that we've known about all this time:
 
-<img src="./assets/counter-dec.gif" width="50%">
+<img src="./assets/counter-dec.gif" width="20%">
 
 Then counting in hexadecimal is the same. You go through all the possible digits (0-F) before you increase by 1 to the digit to the left.
 
