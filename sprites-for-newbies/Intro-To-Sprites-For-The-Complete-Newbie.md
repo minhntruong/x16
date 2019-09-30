@@ -28,7 +28,11 @@ If you look at the [VERA Programmer's Reference](https://github.com/commanderx16
 
 ### F-4-thousand Dollars? ###
 
-It's actually pronounced Hex-F-4-thousand. Hexadecimal is another way to write the numbers you've known all these years. Instead of counting with 10 digits, hexadecimal counts with 16 digits. So, it's 0-1-2-3-4-5-6-7-8-9-A-B-C-D-E-F. It's a bit closer to how computers store data, so programmers like this system.
+It's actually pronounced Hex-F-4-thousand. Hexadecimal is another way to write the numbers you've known all these years. Instead of counting with 10 digits, hexadecimal counts with 16 digits.  So, it's 0-1-2-3-4-5-6-7-8-9-A-B-C-D-E-F. It's a bit closer to how computers store data, so programmers like this system.
+
+Before we look into how hexadecimals work, let's look at the good 'ole decimal system that we've known about all this time:
+
+<img src="./assets/counter-dec.gif" width="50%">
 
 Let's break down $F4000 to see what it's all about:
 
@@ -131,19 +135,25 @@ Just kidding, I'm not goint to list out all 256 values a byte can have, but if y
 
 <span>Digit<sub>7</sub> * 2^7 + Digit<sub>6</sub> * 2^6 + Digit<sub>5</sub> * 2^5 + Digit<sub>4</sub> * 2^4 + Digit<sub>3</sub> * 2^3 + Digit<sub>2</sub> * 2^2 + Digit<sub>1</sub> * 2^1 + Digit<sub>0</sub> * 2^0</span>
 
-So, going back to the table for SPR_CTRL
+So, going back to the definition for SPR_CTRL
 
-|Name|Digit 7|Digit 6|Digit 5|Digit 4|Digit 3|Digit 2|Digit 1|Digit 0|
-|----|-------|-------|-------|-------|-------|-------|-------|:-----:|
-|    |       |       |       |       |       |       |       |EN     |
+|Name    |Digit 7|Digit 6|Digit 5|Digit 4|Digit 3|Digit 2|Digit 1|Digit 0|
+|--------|-------|-------|-------|-------|-------|-------|-------|:-----:|
+|SPR_CTRL|       |       |       |       |       |       |       |EN     |
 
-Based on this, we need to store value
+And so, to make the EN bit of SPR_CTRL into a 1, we need to put these binary digits
 
-```00000001```
+`00000001` into location `$F4000`
 
-into location
+The X16's BASIC also understands binary, as it understands hexadecimal, and you denote a binary number like so:
 
-`$F4000` or `999424`
+`%00000001`
+
+And so, the number
+
+`%00000001` (binary) is the same as `$01` (hexadecimal) is the same as `1` (decimal).
+
+PHEW! And you thought counting to 1 was easy.
 
 ### So, POKE $F4000, 1? ##
 
