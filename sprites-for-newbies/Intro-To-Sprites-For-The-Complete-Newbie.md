@@ -225,6 +225,41 @@ VERA can handle 128 sprites, but we'll only be dealing with 1 for now. A sprite 
     </tbody>
 </table>
 
+Zooming in on just location $F5000, we can see that Bit-7 & Bit-6 control the sprite's height, and Bit-5 & Bit-4 control the sprite's width.
+
+<table>
+    <thead>
+        <tr>
+            <th>Location</th>
+            <th>Bit 7</th>
+            <th>Bit 6</th>
+            <th>Bit 5</th>
+            <th>Bit 4</th>
+            <th>Bit 3</th>
+            <th>Bit 2</th>
+            <th>Bit 1</th>
+            <th>Bit 0</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>$F5007</td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td colspan="4"></td>
+        </tr>
+        <tr>
+            <td></td>
+            <td colspan="2" style="background-color:lightyellow">Sprite height</td>
+            <td colspan="2" style="background-color:lightyellow">Sprite width</td>
+            <td colspan="4"></td>
+        </tr>
+    </tbody>
+</table>
+
+The values you put into those bits are listed below:
 
 | Description | Size Value | Size Bits |
 |-------------|:----------:|:---------:|
@@ -233,7 +268,39 @@ VERA can handle 128 sprites, but we'll only be dealing with 1 for now. A sprite 
 | 32 pixels   |     2      | 10        |
 | 64 pixels   |     3      | 11        |
 
+So, to make a sprite 64x32, you'd put the size bits into $F5000 like so
 
+<table>
+    <thead>
+        <tr>
+            <th>Location</th>
+            <th>Bit 7</th>
+            <th>Bit 6</th>
+            <th>Bit 5</th>
+            <th>Bit 4</th>
+            <th>Bit 3</th>
+            <th>Bit 2</th>
+            <th>Bit 1</th>
+            <th>Bit 0</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>$F5007</td>
+            <td style="text-align:center">1</td>
+            <td style="text-align:center">1</td>
+            <td style="text-align:center">1</td>
+            <td style="text-align:center">0</td>
+            <td colspan="4"></td>
+        </tr>
+        <tr>
+            <td></td>
+            <td colspan="2" style="background-color:lightyellow">Sprite height</td>
+            <td colspan="2" style="background-color:lightyellow">Sprite width</td>
+            <td colspan="4"></td>
+        </tr>
+    </tbody>
+</table>
 
 <img src="./assets/addresses.png" width="100%">
 
