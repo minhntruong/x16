@@ -343,8 +343,8 @@ The 0's and 1's of those bits you see above are what's known as the binary syste
 Luckily, the team have added support for binary in X16 BASIC, so to get those size bits into $F5007. Just prefix the number with the "%" sign. We'll add last line to our BASIC program like so:
 
 ```
-100 VPOKE $F, $4000, 1
-110 VPOKE $F, $5007, %10100000
+100 VPOKE $F, $4000, 1: REM TURN ON SPRITES
+110 VPOKE $F, $5007, %10100000: REM MAKE SIZE 32X32
 
 RUN
 ```
@@ -356,6 +356,8 @@ I know! Remember that I said there are 2 more things you need to do to even make
 Notice that that we have to supply the entire 8 bits to the VPOKE command. Bits 0 through 3 are called the Palette Offset and controls the sprite's colors, but we can ignore them for now.
 
 ### Detour: A Quickie on Binary ###
+
+A binary counter is really cool to look at because the digits change so quickly. So here's one that counts from 0 to 32.
 
 <img src="./assets/counter-binary.gif" width="30%">
 
@@ -421,6 +423,58 @@ Notice that that we have to supply the entire 8 bits to the VPOKE command. Bits 
     </tbody>
 </table>
 
+Bit-7 of $F5001 is where you'd set a sprite format.
+
+If Bit-7 is a 0, then your sprite can only have a total of 16 colors in its graphics.
+
+If Bit-7 is a 1, then you can use the entire 256 colors palette in your sprite.
+
+Why would someone choose to only use 16 colors? It's memory usage. A 16-colors mode sprite takes up half the memory. So if your program is a memory hog, you might choose to that mode instead.
+
+Let's make our sprite the 256-colors mode, memory management is a bit simpler in that mode. So, to add to our program:
+
+```
+100 VPOKE $F, $4000, 1: REM TURN ON SPRITES
+110 VPOKE $F, $5007, %10100000: REM MAKE SIZE 32X32
+120 VPOKE $F, $5001, %10000000: REM MAKE SPRITE 256-COLORS MODE
+
+RUN
+```
+
+### RUN Won't Show Anything ###
+
+There's 1 last thing to do:
+
+* Define the sprite's graphics
+
+
+<table>
+    <thead>
+        <tr>
+            <th>Location</th>
+            <th>Bit 7</th>
+            <th>Bit 6</th>
+            <th>Bit 5</th>
+            <th>Bit 4</th>
+            <th>Bit 3</th>
+            <th>Bit 2</th>
+            <th>Bit 1</th>
+            <th>Bit 0</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>$F5000</td>
+            <td colspan="8" align="center"><b>Address Bits 5-12</b></td>
+        </tr>
+        <tr>
+            <td>$F5001</td>
+            <td><b>Mode</b></td>
+            <td colspan="3"></td>
+            <td colspan="4"><b>Address Bits 13-16</b></td>
+        </tr>
+    </tbody>
+</table>
 
 <img src="./assets/addresses.png" width="100%">
 
