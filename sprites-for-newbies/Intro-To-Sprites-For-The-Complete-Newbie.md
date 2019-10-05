@@ -357,6 +357,8 @@ Notice that that we have to supply the entire 8 bits to the VPOKE command. Bits 
 
 ### Detour: A Quickie on Binary ###
 
+<img src="./assets/counter-binary.gif" width="30%">
+
 
 ### Setting A Sprite's Color Format ###
 
