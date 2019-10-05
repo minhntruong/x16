@@ -218,14 +218,14 @@ VERA can handle 128 sprites, but we'll only be dealing with 1 for now. A sprite 
         </tr>
         <tr>
             <td>$F5007</td>
-            <td colspan="2" style="background-color:lightyellow">Sprite height</td>
-            <td colspan="2" style="background-color:lightyellow">Sprite width</td>
+            <td colspan="2"><b>Sprite height</b></td>
+            <td colspan="2"><b>Sprite width</b></td>
             <td colspan="4"></td>
         </tr>
     </tbody>
 </table>
 
-Zooming in on just location $F5000, we can see that Bit-7 & Bit-6 control the sprite's height, and Bit-5 & Bit-4 control the sprite's width.
+`#FF0000` Zooming in on just location $F5000, we can see that Bit-7 & Bit-6 control the sprite's height, and Bit-5 & Bit-4 control the sprite's width.
 
 <table>
     <thead>
@@ -268,7 +268,7 @@ The values you put into those bits are listed below:
 | 32 pixels   |     2      | 10        |
 | 64 pixels   |     3      | 11        |
 
-So, to make a sprite 64x32, you'd put the size bits into $F5000 like so
+So, to make a sprite 64x16, you'd put the size bits into $F5000 like so
 
 <table>
     <thead>
@@ -289,6 +289,40 @@ So, to make a sprite 64x32, you'd put the size bits into $F5000 like so
             <td>$F5007</td>
             <td style="text-align:center">1</td>
             <td style="text-align:center">1</td>
+            <td style="text-align:center">0</td>
+            <td style="text-align:center">1</td>
+            <td colspan="4"></td>
+        </tr>
+        <tr>
+            <td></td>
+            <td colspan="2" style="background-color:lightyellow">Sprite height</td>
+            <td colspan="2" style="background-color:lightyellow">Sprite width</td>
+            <td colspan="4"></td>
+        </tr>
+    </tbody>
+</table>
+
+To make a sprite 32x32, you'd put "10" into both of those fields
+
+<table>
+    <thead>
+        <tr>
+            <th>Location</th>
+            <th>Bit 7</th>
+            <th>Bit 6</th>
+            <th>Bit 5</th>
+            <th>Bit 4</th>
+            <th>Bit 3</th>
+            <th>Bit 2</th>
+            <th>Bit 1</th>
+            <th>Bit 0</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>$F5007</td>
+            <td style="text-align:center">1</td>
+            <td style="text-align:center">0</td>
             <td style="text-align:center">1</td>
             <td style="text-align:center">0</td>
             <td colspan="4"></td>
@@ -301,6 +335,90 @@ So, to make a sprite 64x32, you'd put the size bits into $F5000 like so
         </tr>
     </tbody>
 </table>
+
+Let's look at how we'll do this with BASIC.
+
+The 0's and 1's of those bits you see above are what's known as the binary system. It's just another counting system like decimals, and hexadecimals, except the digits in binary only goes from 0 to 1. 
+
+Luckily, the team have added support for binary in X16 BASIC, so to get those size bits into $F5007. Just prefix the number with the "%" sign. We'll add last line to our BASIC program like so:
+
+```
+100 VPOKE $F, $4000, 1
+110 VPOKE $F, $5007, %10100000
+
+RUN
+```
+
+### Still Nothing Happened!!!???!
+
+I know! Remember that I said there are 2 more things you need to do to even make a sprite appear?
+
+Notice that that we have to supply the entire 8 bits to the VPOKE command. Bits 0 through 3 are called the Palette Offset and controls the sprite's colors, but we can ignore them for now.
+
+### Detour: A Quickie on Binary ###
+
+
+### Setting A Sprite's Color Format ###
+
+<table>
+    <thead>
+        <tr>
+            <th>Location</th>
+            <th>Bit 7</th>
+            <th>Bit 6</th>
+            <th>Bit 5</th>
+            <th>Bit 4</th>
+            <th>Bit 3</th>
+            <th>Bit 2</th>
+            <th>Bit 1</th>
+            <th>Bit 0</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>$F5000</td>
+            <td colspan="8"></td>
+        </tr>
+        <tr>
+            <td>$F5001</td>
+            <td><b>Mode</b></td>
+            <td colspan="3"></td>
+            <td colspan="4"></td>
+        </tr>
+        <tr>
+            <td>$F5002</td>
+            <td colspan="8"></td>
+        </tr>
+        <tr>
+            <td>$F5003</td>
+            <td colspan="6"></td>
+            <td colspan="2"></td>
+        </tr>
+        <tr>
+            <td>$F5004</td>
+            <td colspan="8"></td>
+        </tr>
+        <tr>
+            <td>$F5005</td>
+            <td colspan="6"></td>
+            <td colspan="2"></td>
+        </tr>
+        <tr>
+            <td>$F5006</td>
+            <td colspan="4"></td>
+            <td colspan="2"></td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>$F5007</td>
+            <td colspan="2"><b>Sprite height</b></td>
+            <td colspan="2"><b>Sprite width</b></td>
+            <td colspan="4"></td>
+        </tr>
+    </tbody>
+</table>
+
 
 <img src="./assets/addresses.png" width="100%">
 
